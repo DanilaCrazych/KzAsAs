@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1400.0" prefWidth="1900.0" style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kzasas.HelloController" />
+<AnchorPane fx:id="back_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kzasas.HelloController">
+   <children>
+      <AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" visible="false">
+         <children>
+            <AnchorPane fx:id="login_centre" layoutX="349.0" layoutY="29.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #fff;" AnchorPane.topAnchor="29.0">
+               <children>
+                  <TextField fx:id="login_loginField" layoutX="36.0" layoutY="70.0" prefHeight="35.0" prefWidth="228.0" promptText="Логин" />
+                  <Label layoutX="35.0" layoutY="12.0" text="Авторизация" textFill="#777777">
+                     <font>
+                        <Font name="Arial Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="login_passField" layoutX="36.0" layoutY="125.0" prefHeight="35.0" prefWidth="228.0" promptText="Пароль" />
+                  <Button fx:id="login_button" layoutX="35.0" layoutY="182.0" mnemonicParsing="false" onAction="#Login" prefHeight="35.0" prefWidth="228.0" style="-fx-font-size: 20;" styleClass="btn" stylesheets="@Style_Login.css" text="Вход" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="login_error" layoutX="47.0" layoutY="235.0" textFill="#d07878" visible="false">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="main_page" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;">
+         <children>
+            <AnchorPane layoutX="-7.0" layoutY="-8.0" prefHeight="516.0" prefWidth="207.0" style="-fx-border-style: solid; -fx-border-width: 1; -fx-border-color: #2e2e2e;">
+               <children>
+                  <Label fx:id="main_sotrudniki" layoutX="20.0" layoutY="125.0" onMouseClicked="#LabelStyle" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сотрудники" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="main_logo" fitHeight="57.0" fitWidth="46.0" layoutX="16.0" layoutY="41.0">
+                     <image>
+                        <Image url="@Logo%201.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="76.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольчугинский" AnchorPane.bottomAnchor="459.7451171875" AnchorPane.topAnchor="43.2314453125">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#8e8e8e" layoutX="76.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="завод" AnchorPane.topAnchor="56.2314453125">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="76.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="специальных" AnchorPane.topAnchor="69.2314453125">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#8e8e8e" layoutX="76.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="сплавов">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Text>
+               </children></AnchorPane>
+            <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="801.0" style="-fx-background-color: #1e1e1e;" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
