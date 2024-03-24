@@ -1,0 +1,28 @@
+.btn{
+  -fx-background-color: #3498DB;
+}
+.btn:hover{
+  -fx-background-color:#2980B9;
+}
+.left_panel{
+  -fx-border-right: solid 1px;
+  -fx-border-color: #2e2e2e;
+}
+.labelcolor{
+  -fx-text-fill: #8e8e8e;
+  -fx-padding: 0 30;
+  -fx-cursor:hand;
+}
+.labelcolor:hover{
+  -fx-background-color: #2e2e2e;
+  -fx-background-radius: 3;
+}
+.podmain{
+  -fx-text-fill: #8e8e8e;
+  -fx-padding: 0 15;
+  -fx-cursor:hand;
+}
+.podmain:hover{
+  -fx-background-color: #2e2e2e;
+  -fx-background-radius: 3;
+}
