@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -16,7 +17,19 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
     public Connection connection;
-    ConBd conBd;
+    @FXML
+    private Label main_tasks;
+    @FXML
+    private Label podmain_sotrudniki_add;
+    @FXML
+    private Label podmain_tasks_new;
+    @FXML
+    private Label podmain_tasks_spisok;
+
+    @FXML
+    private Label podmain_sotrudniki_spisok;
+    @FXML
+    private Pane hidepane;
     @FXML
     private AnchorPane back_page;
     @FXML
@@ -63,11 +76,76 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        conBd.ConnectBd();
+//        ConnectBd();
+    }
+    public void ConnectBd() {
+        try {
+             connection = DriverManager.getConnection("jdbc:mysql://virps.ru:3306/kzss", "danilas", "p@ssw0rd");
+            System.out.println("Подключение к базе данных успешно установлено!");
+        } catch (SQLException e) {
+            System.out.println("Ошибка при подключении к базе данных:");
+            printSQLException(e);
+        }
+    }
+    public static void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLException: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
+    public void clearStyle(){
+        main_sotrudniki.setStyle("");
+        main_tasks.setStyle("");
+    }
+    public void defaultPosition(){
+        main_tasks.setLayoutY(155);
+
+    }
+    public void styleOnClk(Label label){
+        label.setStyle("-fx-background-color: #2e2e2e; -fx-text-fill: #fff; -fx-background-radius: 3;");
+    }
+    public void labelVisFalse(){
+        podmain_sotrudniki_add.setVisible(false);
+        podmain_sotrudniki_spisok.setVisible(false);
+        podmain_tasks_new.setVisible(false);
+        podmain_tasks_spisok.setVisible(false);
+    }
+
+    @FXML
+    protected void sotrudnikiClk(){
+        defaultPosition();
+        clearStyle();
+        labelVisFalse();
+        styleOnClk(main_sotrudniki);
+        main_tasks.setLayoutY(220);
+        podmain_sotrudniki_spisok.setVisible(true);
+        podmain_sotrudniki_add.setVisible(true);
     }
     @FXML
-    protected void LabelStyle(){
-        main_sotrudniki.setStyle("-fx-background-color: #2e2e2e; -fx-text-fill: #fff; -fx-background-radius: 3;");
+    protected void tasksClk(){
+        defaultPosition();
+        clearStyle();
+        labelVisFalse();
+        styleOnClk(main_tasks);
+        podmain_tasks_new.setVisible(true);
+        podmain_tasks_spisok.setVisible(true);
+
+
+    }
+    @FXML
+    protected void backHome(){
+        clearStyle();
+        defaultPosition();
+        labelVisFalse();
     }
 
 }

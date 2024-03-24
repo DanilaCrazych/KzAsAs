@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -41,36 +42,65 @@
          <children>
             <AnchorPane layoutX="-7.0" layoutY="-8.0" prefHeight="516.0" prefWidth="207.0" style="-fx-border-style: solid; -fx-border-width: 1; -fx-border-color: #2e2e2e;">
                <children>
-                  <Label fx:id="main_sotrudniki" layoutX="20.0" layoutY="125.0" onMouseClicked="#LabelStyle" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сотрудники" textFill="WHITE">
+                  <Label fx:id="main_sotrudniki" alignment="CENTER" layoutX="20.0" layoutY="125.0" onMouseClicked="#sotrudnikiClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сотрудники" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="main_logo" fitHeight="57.0" fitWidth="46.0" layoutX="16.0" layoutY="41.0">
-                     <image>
-                        <Image url="@Logo%201.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" layoutX="76.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольчугинский" AnchorPane.bottomAnchor="459.7451171875" AnchorPane.topAnchor="43.2314453125">
+                  <Label fx:id="podmain_sotrudniki_spisok" layoutX="20.0" layoutY="158.0" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Список" textFill="WHITE" visible="false">
                      <font>
-                        <Font name="Arial Bold" size="13.0" />
+                        <Font name="Arial" size="14.0" />
                      </font>
-                  </Text>
-                  <Text fill="#8e8e8e" layoutX="76.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="завод" AnchorPane.topAnchor="56.2314453125">
+                  </Label>
+                  <Label fx:id="podmain_sotrudniki_add" layoutX="20.0" layoutY="191.0" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Добавить сотрудника" textFill="WHITE" visible="false">
                      <font>
-                        <Font name="Arial Bold" size="13.0" />
+                        <Font name="Arial" size="14.0" />
                      </font>
-                  </Text>
-                  <Text fill="WHITE" layoutX="76.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="специальных" AnchorPane.topAnchor="69.2314453125">
+                  </Label>
+                  <Label fx:id="main_tasks" alignment="CENTER" layoutX="20.0" layoutY="155.0" onMouseClicked="#tasksClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Задачи" textFill="WHITE">
                      <font>
-                        <Font name="Arial Bold" size="13.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font>
-                  </Text>
-                  <Text fill="#8e8e8e" layoutX="76.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="сплавов">
+                  </Label>
+                  <Pane layoutX="13.0" layoutY="33.0" onMouseClicked="#backHome" prefHeight="75.0" prefWidth="172.0">
+                     <children>
+                        <ImageView fx:id="main_logo" fitHeight="57.0" fitWidth="46.0" layoutX="10.0" layoutY="12.0">
+                           <image>
+                              <Image url="@Logo%201.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="WHITE" layoutX="67.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольчугинский">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#8e8e8e" layoutX="67.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="завод">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="67.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="специальных">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#8e8e8e" layoutX="67.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="сплавов">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Label fx:id="podmain_tasks_new" layoutX="20.0" layoutY="188.0" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Новая задача" textFill="WHITE" visible="false">
                      <font>
-                        <Font name="Arial Bold" size="13.0" />
+                        <Font name="Arial" size="14.0" />
                      </font>
-                  </Text>
+                  </Label>
+                  <Label fx:id="podmain_tasks_spisok" layoutX="20.0" layoutY="221.0" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Список задач" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
             <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="801.0" style="-fx-background-color: #1e1e1e;" />
          </children>
