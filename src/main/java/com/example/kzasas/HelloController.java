@@ -16,6 +16,8 @@ public class HelloController implements Initializable {
     public Connection connection;
 
     @FXML
+    private AnchorPane main_page;
+    @FXML
     private AnchorPane work_pers;
     @FXML
     private Label work_pers_add;
@@ -81,6 +83,7 @@ public class HelloController implements Initializable {
             login_error.setVisible(true);
         } else if (login_loginField.getText().equals(loginAuth)||login_passField.getText().equals(passAuth)) {
             login_page.setVisible(false);
+            main_page.setVisible(true);
         } else {
             login_error.setText("Неверный логин или пароль!");
             login_error.setVisible(true);}
@@ -88,11 +91,11 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        ConnectBd();
+        ConnectBd();
     }
     public void ConnectBd() {
         try {
-             connection = DriverManager.getConnection("jdbc:mysql://virps.ru:3306/kzss", "danilas", "p@ssw0rd");
+             connection = DriverManager.getConnection("jdbc:mysql://192.168.0.103:3306/kzss", "danilas", "p@ssw0rd");
             System.out.println("Подключение к базе данных успешно установлено!");
         } catch (SQLException e) {
             System.out.println("Ошибка при подключении к базе данных:");
