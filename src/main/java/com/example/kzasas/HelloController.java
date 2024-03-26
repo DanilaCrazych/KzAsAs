@@ -3,10 +3,7 @@ package com.example.kzasas;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -17,6 +14,21 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
     public Connection connection;
+
+    @FXML
+    private AnchorPane work_pers;
+    @FXML
+    private Label work_pers_add;
+    @FXML
+    private Label work_pers_addOtdel;
+    @FXML
+    private Label work_pers_addSotr;
+    @FXML
+    private Pane pane_sotr;
+    @FXML
+    private ScrollPane scrol_pane_sotr;
+    @FXML
+    private Label main_view_addsotr;
     @FXML
     private Label main_tasks;
     @FXML
@@ -104,20 +116,33 @@ public class HelloController implements Initializable {
     }
     public void clearStyle(){
         main_sotrudniki.setStyle("");
+        podmain_sotrudniki_spisok.setStyle("");
+        podmain_sotrudniki_add.setStyle("");
+
         main_tasks.setStyle("");
+        podmain_tasks_spisok.setStyle("");
+        podmain_tasks_new.setStyle("");
     }
     public void defaultPosition(){
         main_tasks.setLayoutY(155);
-
     }
     public void styleOnClk(Label label){
         label.setStyle("-fx-background-color: #2e2e2e; -fx-text-fill: #fff; -fx-background-radius: 3;");
+    }
+    public void defaultStyle(Label label){
+        label.setStyle(" ");
     }
     public void labelVisFalse(){
         podmain_sotrudniki_add.setVisible(false);
         podmain_sotrudniki_spisok.setVisible(false);
         podmain_tasks_new.setVisible(false);
         podmain_tasks_spisok.setVisible(false);
+        work_pers_addOtdel.setVisible(false);
+        work_pers_addSotr.setVisible(false);
+    }
+    public void paneVisFalse(){
+        pane_sotr.setVisible(false);
+        work_pers.setVisible(false);
     }
 
     @FXML
@@ -138,14 +163,34 @@ public class HelloController implements Initializable {
         styleOnClk(main_tasks);
         podmain_tasks_new.setVisible(true);
         podmain_tasks_spisok.setVisible(true);
-
-
+    }
+    @FXML
+    protected void spisokSotr(){
+        styleOnClk(podmain_sotrudniki_spisok);
+        defaultStyle(podmain_sotrudniki_add);
+        paneVisFalse();
+        pane_sotr.setVisible(true);
     }
     @FXML
     protected void backHome(){
+        paneVisFalse();
         clearStyle();
         defaultPosition();
         labelVisFalse();
+    }
+    @FXML
+    protected void workPers(){
+        paneVisFalse();
+        styleOnClk(podmain_sotrudniki_add);
+        defaultStyle(podmain_sotrudniki_spisok);
+        defaultStyle(work_pers_add);
+        work_pers.setVisible(true);
+    }
+    @FXML
+    protected void workPersAddSotr(){
+        styleOnClk(work_pers_add);
+        work_pers_addOtdel.setVisible(true);
+        work_pers_addSotr.setVisible(true);
     }
 
 }

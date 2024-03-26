@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -40,19 +41,19 @@
       </AnchorPane>
       <AnchorPane fx:id="main_page" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="-8.0" prefHeight="516.0" prefWidth="207.0" style="-fx-border-style: solid; -fx-border-width: 1; -fx-border-color: #2e2e2e;">
+            <AnchorPane layoutX="-7.0" layoutY="-8.0" prefHeight="516.0" prefWidth="207.0" style="-fx-border-style: solid solid none none; -fx-border-width: 1; -fx-border-color: #2e2e2e;">
                <children>
-                  <Label fx:id="main_sotrudniki" alignment="CENTER" layoutX="20.0" layoutY="125.0" onMouseClicked="#sotrudnikiClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сотрудники" textFill="WHITE">
+                  <Label fx:id="main_sotrudniki" alignment="CENTER" layoutX="20.0" layoutY="125.0" onMouseClicked="#sotrudnikiClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Персонал" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="podmain_sotrudniki_spisok" layoutX="20.0" layoutY="158.0" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Список" textFill="WHITE" visible="false">
+                  <Label fx:id="podmain_sotrudniki_spisok" layoutX="20.0" layoutY="158.0" onMouseClicked="#spisokSotr" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Список" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="podmain_sotrudniki_add" layoutX="20.0" layoutY="191.0" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Добавить сотрудника" textFill="WHITE" visible="false">
+                  <Label fx:id="podmain_sotrudniki_add" layoutX="20.0" layoutY="191.0" onMouseClicked="#workPers" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Работа с персоналом" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
@@ -102,7 +103,41 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-            <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="801.0" style="-fx-background-color: #1e1e1e;" />
+            <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="801.0" style="-fx-background-color: #1e1e1e;">
+               <children>
+                  <AnchorPane fx:id="work_pers" prefHeight="512.0" prefWidth="801.0">
+                     <children>
+                        <AnchorPane layoutX="1.0" layoutY="-8.0" prefHeight="520.0" prefWidth="129.0" style="-fx-border-color: #2e2e2e; -fx-border-width: 1; -fx-border-style: solid solid none none;">
+                           <children>
+                              <Label fx:id="work_pers_add" alignment="CENTER" layoutX="5.0" layoutY="142.0" onMouseClicked="#workPersAddSotr" prefHeight="31.0" prefWidth="116.0" styleClass="labelcolorNoPad" stylesheets="@Style_Login.css" text="Добавить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="work_pers_addSotr" alignment="CENTER" layoutX="5.0" layoutY="168.0" onMouseClicked="#spisokSotr" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Сотрудника" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="work_pers_addOtdel" alignment="CENTER" layoutX="7.0" layoutY="192.0" onMouseClicked="#spisokSotr" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Отдел" textFill="WHITE" visible="false">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+                  <Pane fx:id="pane_sotr" prefHeight="512.0" prefWidth="799.0" visible="false">
+                     <children>
+                        <ScrollPane fx:id="scrol_pane_sotr" layoutY="60.0" prefHeight="451.0" prefWidth="799.0" stylesheets="@Style_Login.css" />
+                        <Label fx:id="main_view_addsotr" layoutX="1.0" layoutY="22.0" prefHeight="35.0" prefWidth="263.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Работа с персоналом" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children></AnchorPane>
          </children>
       </AnchorPane>
    </children>

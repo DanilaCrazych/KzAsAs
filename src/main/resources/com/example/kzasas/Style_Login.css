@@ -17,6 +17,14 @@
   -fx-background-color: #2e2e2e;
   -fx-background-radius: 3;
 }
+.labelcolorNoPad{
+  -fx-text-fill: #8e8e8e;
+  -fx-cursor:hand;
+}
+.labelcolorNoPad:hover{
+  -fx-background-color: #2e2e2e;
+  -fx-background-radius: 3;
+}
 .podmain{
   -fx-text-fill: #8e8e8e;
   -fx-padding: 0 15;
@@ -25,4 +33,18 @@
 .podmain:hover{
   -fx-background-color: #2e2e2e;
   -fx-background-radius: 3;
+}
+.podmainNoPad{
+  -fx-text-fill: #8e8e8e;
+  -fx-cursor:hand;
+}
+.podmainNoPad:hover{
+  -fx-background-color: #2e2e2e;
+  -fx-background-radius: 3;
+}
+.scroll-pane > .viewport {
+  -fx-background-color: transparent;
+}
+.scroll-pane {
+  -fx-background-color: transparent;
 }
