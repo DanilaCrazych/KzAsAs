@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="back_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kzasas.HelloController">
+<AnchorPane fx:id="back_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kzasas.HelloController">
    <children>
-      <AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;">
+      <AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" visible="false">
          <children>
             <AnchorPane fx:id="login_centre" layoutX="349.0" layoutY="29.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #fff;" AnchorPane.topAnchor="29.0">
                <children>
@@ -39,7 +39,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="main_page" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" visible="false">
+      <AnchorPane fx:id="main_page" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;">
          <children>
             <AnchorPane layoutX="-7.0" layoutY="-8.0" prefHeight="516.0" prefWidth="207.0" style="-fx-border-style: solid solid none none; -fx-border-width: 1; -fx-border-color: #2e2e2e;">
                <children>
@@ -105,7 +105,7 @@
                </children></AnchorPane>
             <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="801.0" style="-fx-background-color: #1e1e1e;">
                <children>
-                  <AnchorPane fx:id="work_pers" prefHeight="512.0" prefWidth="801.0" visible="false">
+                  <AnchorPane fx:id="work_pers" prefHeight="512.0" prefWidth="801.0">
                      <children>
                         <AnchorPane layoutX="1.0" layoutY="-8.0" prefHeight="520.0" prefWidth="129.0" style="-fx-border-color: #2e2e2e; -fx-border-width: 1; -fx-border-style: solid solid none none;">
                            <children>
@@ -114,18 +114,38 @@
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="work_pers_addSotr" alignment="CENTER" layoutX="5.0" layoutY="168.0" onMouseClicked="#spisokSotr" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Сотрудника" textFill="WHITE">
+                              <Label fx:id="work_pers_addSotr" alignment="CENTER" layoutX="5.0" layoutY="170.0" onMouseClicked="#addsotrview" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Сотрудника" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="work_pers_addOtdel" alignment="CENTER" layoutX="7.0" layoutY="192.0" onMouseClicked="#spisokSotr" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Отдел" textFill="WHITE" visible="false">
+                              <Label fx:id="work_pers_addOtdel" alignment="CENTER" layoutX="5.0" layoutY="197.0" onMouseClicked="#spisokSotr" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Отдел" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
+                        <Pane fx:id="add_sotr" layoutX="138.0" layoutY="30.0" prefHeight="466.0" prefWidth="354.0">
+                           <children>
+                              <ImageView fx:id="add_sotr_image" fitHeight="150.0" fitWidth="200.0" layoutX="71.0" pickOnBounds="true" preserveRatio="true" />
+                              <Button fx:id="login_button1" layoutX="56.0" layoutY="165.0" mnemonicParsing="false" onAction="#choiseImage" prefHeight="35.0" prefWidth="228.0" style="-fx-font-size: 18;" styleClass="btn" stylesheets="@Style_Login.css" text="Добавить изображение" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="1.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="add_sotr_fio" layoutX="57.0" layoutY="209.0" prefHeight="35.0" prefWidth="228.0" promptText="ФИО" />
+                              <TextField fx:id="add_sotr_otdel" layoutX="57.0" layoutY="249.0" prefHeight="35.0" prefWidth="228.0" promptText="Отдел" />
+                              <TextField fx:id="add_sotr_login" layoutX="57.0" layoutY="289.0" prefHeight="35.0" prefWidth="228.0" promptText="Логин" />
+                              <PasswordField fx:id="add_sotr_password" layoutX="57.0" layoutY="330.0" prefHeight="35.0" prefWidth="228.0" promptText="Пароль" />
+                              <TextField fx:id="add_sotr_mail" layoutX="57.0" layoutY="370.0" prefHeight="35.0" prefWidth="228.0" promptText="mail" />
+                              <Button fx:id="login_button11" layoutX="57.0" layoutY="424.0" mnemonicParsing="false" onAction="#addsotrserver" prefHeight="31.0" prefWidth="129.0" style="-fx-font-size: 18;" styleClass="btn" stylesheets="@Style_Login.css" text="Записать" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="1.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
                      </children></AnchorPane>
                   <Pane fx:id="pane_sotr" prefHeight="512.0" prefWidth="799.0" visible="false">
                      <children>
