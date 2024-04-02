@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="back_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kzasas.HelloController">
+<AnchorPane fx:id="back_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kzasas.HelloController">
    <children>
       <AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" visible="false">
          <children>
@@ -105,7 +107,7 @@
                </children></AnchorPane>
             <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="801.0" style="-fx-background-color: #1e1e1e;">
                <children>
-                  <AnchorPane fx:id="work_pers" prefHeight="512.0" prefWidth="801.0">
+                  <AnchorPane fx:id="work_pers" prefHeight="512.0" prefWidth="801.0" visible="false">
                      <children>
                         <AnchorPane layoutX="1.0" layoutY="-8.0" prefHeight="520.0" prefWidth="129.0" style="-fx-border-color: #2e2e2e; -fx-border-width: 1; -fx-border-style: solid solid none none;">
                            <children>
@@ -126,7 +128,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Pane fx:id="add_sotr" layoutX="138.0" layoutY="30.0" prefHeight="466.0" prefWidth="354.0">
+                        <Pane fx:id="add_sotr" layoutX="138.0" layoutY="30.0" prefHeight="466.0" prefWidth="354.0" visible="false">
                            <children>
                               <ImageView fx:id="add_sotr_image" fitHeight="150.0" fitWidth="200.0" layoutX="71.0" pickOnBounds="true" preserveRatio="true" />
                               <Button fx:id="login_button1" layoutX="56.0" layoutY="165.0" mnemonicParsing="false" onAction="#choiseImage" prefHeight="35.0" prefWidth="228.0" style="-fx-font-size: 18;" styleClass="btn" stylesheets="@Style_Login.css" text="Добавить изображение" textFill="WHITE">
@@ -147,14 +149,26 @@
                            </children>
                         </Pane>
                      </children></AnchorPane>
-                  <Pane fx:id="pane_sotr" prefHeight="512.0" prefWidth="799.0" visible="false">
+                  <Pane fx:id="pane_sotr" prefHeight="512.0" prefWidth="799.0">
                      <children>
-                        <ScrollPane fx:id="scrol_pane_sotr" layoutY="60.0" prefHeight="451.0" prefWidth="799.0" stylesheets="@Style_Login.css" />
-                        <Label fx:id="main_view_addsotr" layoutX="1.0" layoutY="22.0" prefHeight="35.0" prefWidth="263.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Работа с персоналом" textFill="WHITE">
+                        <Label fx:id="pane_sotr_spisok_sotr" alignment="CENTER" layoutX="2.0" layoutY="28.0" onMouseClicked="#sotrudnikiClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сотрудники" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
+                        <ScrollPane fx:id="scrol_pane_sotr" layoutY="60.0" prefHeight="451.0" prefWidth="799.0" stylesheets="@Style_Login.css" visible="false" />
+                        <Label fx:id="pane_sotr_spisok_otdel" alignment="CENTER" layoutX="176.0" layoutY="28.0" onMouseClicked="#sotrudnikiClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Отделы" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="pane_sotr_table_otdel" layoutX="25.0" layoutY="82.0" prefHeight="418.0" prefWidth="756.0" style="-fx-background-color: #1e1e1e;">
+                           <columns>
+                              <TableColumn fx:id="table_otdel_id" prefWidth="75.0" text="id" />
+                              <TableColumn fx:id="table_otdel_name" prefWidth="103.73538208007812" text="Название" />
+                              <TableColumn fx:id="table_otdel_location" prefWidth="92.95962524414062" text="Локация" />
+                           </columns>
+                        </TableView>
                      </children>
                   </Pane>
                </children></AnchorPane>
