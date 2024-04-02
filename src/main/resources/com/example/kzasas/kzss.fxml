@@ -16,7 +16,7 @@
 
 <AnchorPane fx:id="back_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kzasas.HelloController">
    <children>
-      <AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" visible="false">
+      <AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;">
          <children>
             <AnchorPane fx:id="login_centre" layoutX="349.0" layoutY="29.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #fff;" AnchorPane.topAnchor="29.0">
                <children>
@@ -41,7 +41,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="main_page" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;">
+      <AnchorPane fx:id="main_page" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" visible="false">
          <children>
             <AnchorPane layoutX="-7.0" layoutY="-8.0" prefHeight="516.0" prefWidth="207.0" style="-fx-border-style: solid solid none none; -fx-border-width: 1; -fx-border-color: #2e2e2e;">
                <children>
@@ -149,7 +149,7 @@
                            </children>
                         </Pane>
                      </children></AnchorPane>
-                  <Pane fx:id="pane_sotr" prefHeight="512.0" prefWidth="799.0">
+                  <Pane fx:id="pane_sotr" prefHeight="512.0" prefWidth="799.0" visible="false">
                      <children>
                         <Label fx:id="pane_sotr_spisok_sotr" alignment="CENTER" layoutX="2.0" layoutY="28.0" onMouseClicked="#sotrudnikiClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сотрудники" textFill="WHITE">
                            <font>
@@ -157,12 +157,12 @@
                            </font>
                         </Label>
                         <ScrollPane fx:id="scrol_pane_sotr" layoutY="60.0" prefHeight="451.0" prefWidth="799.0" stylesheets="@Style_Login.css" visible="false" />
-                        <Label fx:id="pane_sotr_spisok_otdel" alignment="CENTER" layoutX="176.0" layoutY="28.0" onMouseClicked="#sotrudnikiClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Отделы" textFill="WHITE">
+                        <Label fx:id="pane_sotr_spisok_otdel" alignment="CENTER" layoutX="176.0" layoutY="28.0" onMouseClicked="#spispokOtdel" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Отделы" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="pane_sotr_table_otdel" layoutX="25.0" layoutY="82.0" prefHeight="418.0" prefWidth="756.0" style="-fx-background-color: #1e1e1e;">
+                        <TableView fx:id="pane_sotr_table_otdel" layoutX="25.0" layoutY="82.0" prefHeight="406.0" prefWidth="756.0" style="-fx-background-color: #1e1e1e;" visible="false">
                            <columns>
                               <TableColumn fx:id="table_otdel_id" prefWidth="75.0" text="id" />
                               <TableColumn fx:id="table_otdel_name" prefWidth="103.73538208007812" text="Название" />

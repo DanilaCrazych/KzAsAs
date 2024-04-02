@@ -1,9 +1,12 @@
 package com.example.kzasas;
 
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -17,18 +20,22 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
-    public Connection connection;
+    ObservableList<BdOtdel> listOtdel;
+
+    ConBd cb =new ConBd();
+    GetData getData = new GetData()
+;    public Connection connection;
     ConBd conbd = new ConBd();
     @FXML
-    private TableView<?> pane_sotr_table_otdel;
+    private TableView<BdOtdel> pane_sotr_table_otdel;
     @FXML
-    private TableColumn<?, ?> table_otdel_id;
+    private TableColumn<BdOtdel, Integer> table_otdel_id;
 
     @FXML
-    private TableColumn<?, ?> table_otdel_location;
+    private TableColumn<BdOtdel, String > table_otdel_location;
 
     @FXML
-    private TableColumn<?, ?> table_otdel_name;
+    private TableColumn<BdOtdel, String > table_otdel_name;
     @FXML
     private Pane add_sotr;
     @FXML
@@ -37,6 +44,10 @@ public class HelloController implements Initializable {
     private AnchorPane work_pers;
     @FXML
     private Label work_pers_add;
+    @FXML
+    private Label pane_sotr_spisok_otdel;
+    @FXML
+    private Label pane_sotr_spisok_sotr;
     @FXML
     private Label work_pers_addOtdel;
     @FXML
@@ -96,7 +107,7 @@ public class HelloController implements Initializable {
         String loginAuth = "";
         String passAuth = "";
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = cb.connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 loginAuth = resultSet.getString(1);
@@ -151,7 +162,7 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ConnectBd();
+        cb.ConnectBd();
     }
 
     public void clearStyle() {
@@ -162,6 +173,9 @@ public class HelloController implements Initializable {
         main_tasks.setStyle("");
         podmain_tasks_spisok.setStyle("");
         podmain_tasks_new.setStyle("");
+
+        pane_sotr_spisok_otdel.setStyle("");
+        pane_sotr_spisok_sotr.setStyle("");
     }
 
     public void defaultPosition() {
@@ -188,6 +202,7 @@ public class HelloController implements Initializable {
     public void paneVisFalse() {
         pane_sotr.setVisible(false);
         work_pers.setVisible(false);
+        pane_sotr_table_otdel.setVisible(false);
     }
 
     @FXML
@@ -247,31 +262,25 @@ public class HelloController implements Initializable {
     protected void addsotrview() {
         add_sotr.setVisible(true);
     }
-
-    public void ConnectBd() {
+    @FXML
+    protected void spispokOtdel(){
+        styleOnClk(pane_sotr_spisok_otdel);
+        pane_sotr_table_otdel.getItems().clear();
+        listOtdel= getData.listOtdel;
+        pane_sotr_table_otdel.setVisible(true);
+        getData.getDataOtdel();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://virps.ru:3306/kzss", "danilas", "p@ssw0rd");
-            System.out.println("Подключение к базе данных успешно установлено!");
-        } catch (SQLException e) {
-            System.out.println("Ошибка при подключении к базе данных:");
-            printSQLException(e);
+            table_otdel_id.setCellValueFactory(new PropertyValueFactory<BdOtdel, Integer>("id"));
+            table_otdel_name.setCellValueFactory(new PropertyValueFactory<BdOtdel, String>("name"));
+            table_otdel_location.setCellValueFactory(new PropertyValueFactory<BdOtdel, String>("location"));
+            pane_sotr_table_otdel.setItems(listOtdel);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void printSQLException(SQLException ex) {
-        for (Throwable e : ex) {
-            if (e instanceof SQLException) {
-                e.printStackTrace(System.err);
-                System.err.println("SQLException: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    System.out.println("Cause: " + t);
-                    t = t.getCause();
-                }
-            }
-        }
-    }
+
+
+
 
 }

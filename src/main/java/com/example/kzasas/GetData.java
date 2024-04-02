@@ -1,0 +1,30 @@
+package com.example.kzasas;
+
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class GetData {
+    ConBd cb = new ConBd();
+    public ObservableList<BdOtdel> listOtdel = FXCollections.observableArrayList();
+
+    public void getDataOtdel() {
+        cb.ConnectBd();
+        try {
+            Statement statement = cb.connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM otdel");
+            while (resultSet.next()) {
+                listOtdel.add(new BdOtdel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3)));
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed...");
+            System.out.println(e);
+        }
+    }
+
+}
