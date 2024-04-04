@@ -36,6 +36,21 @@ public class HelloController implements Initializable {
 
     @FXML
     private TableColumn<BdOtdel, String > table_otdel_name;
+
+    @FXML
+    private Pane add_otdel;
+
+    @FXML
+    private Label add_otdel_error;
+
+    @FXML
+    private Button add_otdel_btn;
+
+    @FXML
+    private TextField add_otdel_location;
+
+    @FXML
+    private TextField add_otdel_name;
     @FXML
     private Pane add_sotr;
     @FXML
@@ -101,6 +116,9 @@ public class HelloController implements Initializable {
     @FXML
     private TextField add_sotr_otdel;
 
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+
     @FXML
     protected void Login() {
         String query = "SELECT login, password FROM users WHERE login LIKE '" + login_loginField.getText() + "'";
@@ -149,14 +167,53 @@ public class HelloController implements Initializable {
         String password = add_sotr_password.getText();
         String mail = add_sotr_mail.getText();
         String otdel = add_sotr_otdel.getText();
-        try {
-            String quary = "INSERT INTO `kzss`.`staff` (`fio`, `otdel`, `mail`, `login`, `password`) " +
-                    "VALUES ('" + fio + "', '" + otdel + "', '" + mail + "', '" + login + "', '" + password + "');\n";
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(quary);
-            System.out.println("Успешно");
-        } catch (Exception e) {
-            System.out.println("Неуспешно");
+        if (add_sotr_fio.getText().equals("") || add_sotr_otdel.getText().equals("") || add_sotr_mail.getText().equals("")
+                || add_sotr_mail.getText().equals("") || add_sotr_password.getText().equals("")) {
+            alert.setTitle("Ошибка");
+            alert.setHeaderText(null);
+            alert.setContentText("Заполните пустые поля!");
+            alert.showAndWait();
+        } else {
+            try {
+                String quary = "INSERT INTO `kzss`.`staff` (`fio`, `otdel`, `mail`, `login`, `password`) " +
+                        "VALUES ('" + fio + "', '" + otdel + "', '" + mail + "', '" + login + "', '" + password + "');\n";
+                Statement statement = cb.connection.createStatement();
+                statement.executeUpdate(quary);
+                alert.setTitle("Запись");
+                alert.setHeaderText(null);
+                alert.setContentText("Запись выполнена успешно");
+                alert.showAndWait();
+            } catch (Exception e) {
+                alert.setTitle("Запись");
+                alert.setHeaderText(null);
+                alert.setContentText("Запись не выполнена");
+                alert.showAndWait();
+            }
+        }
+    }
+    @FXML
+    protected void addOtdelBD(){
+        String name = add_otdel_name.getText();
+        String loc = add_otdel_location.getText();
+        if(add_otdel_name.getText().equals("") || add_otdel_location.getText().equals("")){
+            alert.setTitle("Ошибка");
+            alert.setHeaderText(null);
+            alert.setContentText("Заполните пустые поля!");
+            alert.showAndWait();
+        } else {
+            try {
+                Statement statement = cb.connection.createStatement();
+                statement.executeUpdate("INSERT INTO `kzss`.`otdel` (`name`, `location`) VALUES ('"+name+"', '"+loc+"');");
+                alert.setTitle("Запись");
+                alert.setHeaderText(null);
+                alert.setContentText("Запись выполнена успешно");
+                alert.showAndWait();
+            } catch (Exception e) {
+                alert.setTitle("Запись");
+                alert.setHeaderText(null);
+                alert.setContentText("Запись не выполнена");
+                alert.showAndWait();
+            }
         }
     }
 
@@ -176,6 +233,9 @@ public class HelloController implements Initializable {
 
         pane_sotr_spisok_otdel.setStyle("");
         pane_sotr_spisok_sotr.setStyle("");
+
+        work_pers_addSotr.setStyle("");
+        work_pers_addOtdel.setStyle("");
     }
 
     public void defaultPosition() {
@@ -200,9 +260,12 @@ public class HelloController implements Initializable {
     }
 
     public void paneVisFalse() {
+
         pane_sotr.setVisible(false);
         work_pers.setVisible(false);
         pane_sotr_table_otdel.setVisible(false);
+        add_otdel.setVisible(false);
+        add_sotr.setVisible(false);
     }
 
     @FXML
@@ -260,6 +323,9 @@ public class HelloController implements Initializable {
 
     @FXML
     protected void addsotrview() {
+        defaultStyle(work_pers_addOtdel);
+        styleOnClk(work_pers_addSotr);
+        add_otdel.setVisible(false);
         add_sotr.setVisible(true);
     }
     @FXML
@@ -279,8 +345,18 @@ public class HelloController implements Initializable {
         }
     }
 
+    @FXML
+    protected void addOtdel(){
+        styleOnClk(work_pers_addOtdel);
+        defaultStyle(work_pers_addSotr);
+        add_otdel.setVisible(true);
+        add_sotr.setVisible(false);
 
-
-
-
+    }
 }
+
+
+
+//Сделать проверку на пустые поля отдел и сотрудники, сделать изменение и удаление (Можно поиск).
+// Сделать лейбл на который будет выводиться информация о выполнении работы Пример: Запись выполнена успешно.
+// Посмотреть как делается статистика и загрузка изображений на сервер. Также узнать у "Михаила" как он сделал красивый список.
