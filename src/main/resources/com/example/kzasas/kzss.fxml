@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
@@ -94,7 +96,7 @@
                         </Text>
                      </children>
                   </Pane>
-                  <Label fx:id="podmain_tasks_new" layoutX="20.0" layoutY="188.0" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Новая задача" textFill="WHITE" visible="false">
+                  <Label fx:id="podmain_tasks_new" layoutX="20.0" layoutY="188.0" onMouseClicked="#newTaskClk" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Новая задача" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
@@ -104,24 +106,34 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="main_report" alignment="CENTER" layoutX="19.0" layoutY="416.0" onMouseClicked="#reports" prefHeight="31.0" prefWidth="176.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Отчетность" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="podmain_report_formirovanie" layoutX="19.0" layoutY="451.0" onMouseClicked="#formirovanie_reports" prefHeight="31.0" prefWidth="176.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Формирование отчета" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
-            <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="801.0" style="-fx-background-color: #1e1e1e;">
+            <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="771.0" style="-fx-background-color: #1e1e1e;" visible="false">
                <children>
-                  <AnchorPane fx:id="work_pers" prefHeight="512.0" prefWidth="801.0">
+                  <AnchorPane fx:id="work_pers" layoutY="-7.0" prefHeight="512.0" prefWidth="801.0">
                      <children>
-                        <AnchorPane layoutX="1.0" layoutY="-8.0" prefHeight="520.0" prefWidth="129.0" style="-fx-border-color: #2e2e2e; -fx-border-width: 1; -fx-border-style: solid solid none none;">
+                        <AnchorPane fx:id="work_left_pane" layoutX="1.0" layoutY="-8.0" prefHeight="520.0" prefWidth="129.0" style="-fx-border-color: #2e2e2e; -fx-border-width: 1; -fx-border-style: solid solid none none;">
                            <children>
-                              <Label fx:id="work_pers_add" alignment="CENTER" layoutX="5.0" layoutY="142.0" onMouseClicked="#workPersAddSotr" prefHeight="31.0" prefWidth="116.0" styleClass="labelcolorNoPad" stylesheets="@Style_Login.css" text="Добавить" textFill="WHITE">
+                              <Label fx:id="work_pers_add" alignment="CENTER" layoutX="5.0" layoutY="132.0" onMouseClicked="#workPersAddSotr" prefHeight="31.0" prefWidth="116.0" styleClass="labelcolorNoPad" stylesheets="@Style_Login.css" text="Добавить" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="work_pers_addSotr" alignment="CENTER" layoutX="5.0" layoutY="175.0" onMouseClicked="#addsotrview" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Сотрудника" textFill="WHITE">
+                              <Label fx:id="work_pers_addSotr" alignment="CENTER" layoutX="5.0" layoutY="165.0" onMouseClicked="#addsotrview" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Сотрудника" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="work_pers_addOtdel" alignment="CENTER" layoutX="5.0" layoutY="208.0" onMouseClicked="#addOtdel" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Отдел" textFill="WHITE">
+                              <Label fx:id="work_pers_addOtdel" alignment="CENTER" layoutX="5.0" layoutY="198.0" onMouseClicked="#addOtdel" prefHeight="31.0" prefWidth="116.0" styleClass="podmainNoPad" stylesheets="@Style_Login.css" text="Отдел" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -130,7 +142,10 @@
                         </AnchorPane>
                         <Pane fx:id="add_sotr" layoutX="138.0" layoutY="30.0" prefHeight="466.0" prefWidth="354.0" visible="false">
                            <children>
-                              <ImageView fx:id="add_sotr_image" fitHeight="150.0" fitWidth="200.0" layoutX="71.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="add_sotr_image" fitHeight="150.0" fitWidth="200.0" layoutX="71.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Logo%201.png" />
+                                 </image></ImageView>
                               <Button fx:id="login_button1" layoutX="56.0" layoutY="165.0" mnemonicParsing="false" onAction="#choiseImage" prefHeight="35.0" prefWidth="228.0" style="-fx-font-size: 18;" styleClass="btn" stylesheets="@Style_Login.css" text="Добавить изображение" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="1.0" />
@@ -162,12 +177,12 @@
                      </children></AnchorPane>
                   <Pane fx:id="pane_sotr" prefHeight="512.0" prefWidth="799.0" visible="false">
                      <children>
-                        <Label fx:id="pane_sotr_spisok_sotr" alignment="CENTER" layoutX="2.0" layoutY="28.0" onMouseClicked="#sotrudnikiClk" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сотрудники" textFill="WHITE">
+                        <Label fx:id="pane_sotr_spisok_sotr" alignment="CENTER" layoutX="2.0" layoutY="28.0" onMouseClicked="#sotrudnikiSpisok" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сотрудники" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="scrol_pane_sotr" layoutY="60.0" prefHeight="451.0" prefWidth="799.0" stylesheets="@Style_Login.css" visible="false" />
+                        <ScrollPane fx:id="scrol_pane_sotr" layoutX="14.0" layoutY="60.0" prefHeight="441.0" prefWidth="774.0" stylesheets="@Style_Login.css" />
                         <Label fx:id="pane_sotr_spisok_otdel" alignment="CENTER" layoutX="176.0" layoutY="28.0" onMouseClicked="#spispokOtdel" prefHeight="31.0" prefWidth="173.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Отделы" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
@@ -182,7 +197,58 @@
                         </TableView>
                      </children>
                   </Pane>
+                  <Pane fx:id="pane_reports" layoutX="1.0" layoutY="4.0" prefHeight="504.0" prefWidth="798.0" visible="false">
+                     <children>
+                        <ComboBox layoutX="36.0" layoutY="50.0" prefHeight="26.0" prefWidth="160.0" promptText="Вид отчета" />
+                        <ComboBox layoutX="211.0" layoutY="50.0" prefHeight="26.0" prefWidth="165.0" promptText="Тип отчета" />
+                        <Label fx:id="pane_sotr_spisok_sotr1" alignment="CENTER" layoutX="395.0" layoutY="14.0" onMouseClicked="#sotrudnikiSpisok" prefHeight="31.0" prefWidth="272.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Используемые данные" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox layoutX="423.0" layoutY="50.0" prefHeight="26.0" prefWidth="165.0" promptText="Группа" />
+                        <ComboBox layoutX="590.0" layoutY="50.0" prefHeight="26.0" prefWidth="165.0" promptText="Сотрудник" />
+                        <Label fx:id="pane_sotr_spisok_sotr11" alignment="CENTER" layoutX="603.0" layoutY="458.0" onMouseClicked="#sotrudnikiSpisok" prefHeight="31.0" prefWidth="175.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Сохранить" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pane_sotr_spisok_sotr111" alignment="CENTER" layoutX="447.0" layoutY="459.0" onMouseClicked="#sotrudnikiSpisok" prefHeight="31.0" prefWidth="133.0" styleClass="labelcolor" stylesheets="@Style_Login.css" text="Печать" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="pane_sotr_table_otdel1" layoutX="37.0" layoutY="93.0" prefHeight="355.0" prefWidth="720.0" />
+                     </children>
+                  </Pane>
                </children></AnchorPane>
+            <Label fx:id="podmain_sotrudniki_spisok1" layoutX="30.0" layoutY="168.0" onMouseClicked="#spisokSotr" prefHeight="31.0" prefWidth="173.0" styleClass="podmain" stylesheets="@Style_Login.css" text="Список" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="pane_tasks" layoutX="211.0" layoutY="8.0" prefHeight="491.0" prefWidth="780.0">
+               <children>
+                  <Pane fx:id="pane_new_task" layoutX="7.0" layoutY="25.0" prefHeight="441.0" prefWidth="760.0">
+                     <children>
+                        <ComboBox fx:id="combo_new_task" layoutX="140.0" layoutY="111.0" prefHeight="34.0" prefWidth="227.0" promptText="Сотрудник/группа" />
+                        <DatePicker fx:id="new_task_startdate" layoutX="140.0" layoutY="225.0" prefHeight="26.0" prefWidth="184.0" promptText="Начало " />
+                        <Button fx:id="new_task_btn" layoutX="141.0" layoutY="396.0" mnemonicParsing="false" onAction="#addsotrserver" prefHeight="31.0" prefWidth="129.0" style="-fx-font-size: 18;" styleClass="btn" stylesheets="@Style_Login.css" text="Записать" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="1.0" />
+                           </font>
+                        </Button>
+                        <DatePicker fx:id="new_task_finishdate" layoutX="141.0" layoutY="259.0" prefHeight="26.0" prefWidth="183.0" promptText="Конец" />
+                        <TextField fx:id="new_task_task" layoutX="140.0" layoutY="151.0" prefHeight="68.0" prefWidth="226.0" promptText="Задача" />
+                        <TextField fx:id="new_task_comit" layoutX="141.0" layoutY="295.0" prefHeight="93.0" prefWidth="226.0" promptText="Коментарий" />
+                        <Label fx:id="pane_sotr_spisok_sotr12" alignment="CENTER" layoutX="116.0" layoutY="69.0" prefHeight="31.0" prefWidth="272.0" styleClass="labelcolorNoPad" stylesheets="@Style_Login.css" text="Новая задача" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="28.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

@@ -5,12 +5,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -21,10 +24,11 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
     ObservableList<BdOtdel> listOtdel;
+    ObservableList<BDStaff> listStaff;
 
-    ConBd cb =new ConBd();
-    GetData getData = new GetData()
-;    public Connection connection;
+    ConBd cb = new ConBd();
+    GetData getData = new GetData();
+    public Connection connection;
     ConBd conbd = new ConBd();
     @FXML
     private TableView<BdOtdel> pane_sotr_table_otdel;
@@ -32,58 +36,39 @@ public class HelloController implements Initializable {
     private TableColumn<BdOtdel, Integer> table_otdel_id;
 
     @FXML
-    private TableColumn<BdOtdel, String > table_otdel_location;
+    private TableColumn<BdOtdel, String> table_otdel_location;
 
     @FXML
-    private TableColumn<BdOtdel, String > table_otdel_name;
+    private TableColumn<BdOtdel, String> table_otdel_name;
 
     @FXML
-    private Pane add_otdel;
+    private Pane add_otdel, pane_new_task,pane_sotr, pane_tasks;
+    @FXML
+    private ComboBox combo_new_task;
+    @FXML
+    private DatePicker new_task_startdate,new_task_finishdate;
+    @FXML
+    private AnchorPane work_left_pane;
+
+
 
     @FXML
-    private Label add_otdel_error;
+    private Button add_otdel_btn,new_task_btn;
 
     @FXML
-    private Button add_otdel_btn;
-
-    @FXML
-    private TextField add_otdel_location;
+    private TextField add_otdel_location,new_task_task,new_task_comit;
 
     @FXML
     private TextField add_otdel_name;
     @FXML
-    private Pane add_sotr;
+    private Pane add_sotr, pane_reports;
     @FXML
     private AnchorPane main_page;
     @FXML
     private AnchorPane work_pers;
     @FXML
-    private Label work_pers_add;
-    @FXML
-    private Label pane_sotr_spisok_otdel;
-    @FXML
-    private Label pane_sotr_spisok_sotr;
-    @FXML
-    private Label work_pers_addOtdel;
-    @FXML
-    private Label work_pers_addSotr;
-    @FXML
-    private Pane pane_sotr;
-    @FXML
-    private ScrollPane scrol_pane_sotr;
-    @FXML
-    private Label main_view_addsotr;
-    @FXML
-    private Label main_tasks;
-    @FXML
-    private Label podmain_sotrudniki_add;
-    @FXML
-    private Label podmain_tasks_new;
-    @FXML
-    private Label podmain_tasks_spisok;
-
-    @FXML
-    private Label podmain_sotrudniki_spisok;
+    private Label work_pers_add, main_report,add_otdel_error, podmain_report_formirovanie, pane_sotr_spisok_otdel,pane_sotr_spisok_sotr,work_pers_addOtdel,
+            work_pers_addSotr,main_view_addsotr,main_tasks,podmain_sotrudniki_add,podmain_tasks_new,podmain_tasks_spisok,podmain_sotrudniki_spisok;
     @FXML
     private Pane hidepane;
     @FXML
@@ -119,6 +104,7 @@ public class HelloController implements Initializable {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
 
+    //функция авторизации
     @FXML
     protected void Login() {
         String query = "SELECT login, password FROM users WHERE login LIKE '" + login_loginField.getText() + "'";
@@ -147,6 +133,7 @@ public class HelloController implements Initializable {
         }
     }
 
+//    Выбор картинки
     @FXML
     protected void choiseImage() {
         FileChooser fileChooser = new FileChooser();
@@ -160,6 +147,7 @@ public class HelloController implements Initializable {
         }
     }
 
+//    Добавить в базу данных
     @FXML
     protected void addsotrserver() {
         String fio = add_sotr_fio.getText();
@@ -191,11 +179,12 @@ public class HelloController implements Initializable {
             }
         }
     }
+
     @FXML
-    protected void addOtdelBD(){
+    protected void addOtdelBD() {
         String name = add_otdel_name.getText();
         String loc = add_otdel_location.getText();
-        if(add_otdel_name.getText().equals("") || add_otdel_location.getText().equals("")){
+        if (add_otdel_name.getText().equals("") || add_otdel_location.getText().equals("")) {
             alert.setTitle("Ошибка");
             alert.setHeaderText(null);
             alert.setContentText("Заполните пустые поля!");
@@ -203,7 +192,7 @@ public class HelloController implements Initializable {
         } else {
             try {
                 Statement statement = cb.connection.createStatement();
-                statement.executeUpdate("INSERT INTO `kzss`.`otdel` (`name`, `location`) VALUES ('"+name+"', '"+loc+"');");
+                statement.executeUpdate("INSERT INTO `kzss`.`otdel` (`name`, `location`) VALUES ('" + name + "', '" + loc + "');");
                 alert.setTitle("Запись");
                 alert.setHeaderText(null);
                 alert.setContentText("Запись выполнена успешно");
@@ -222,6 +211,7 @@ public class HelloController implements Initializable {
         cb.ConnectBd();
     }
 
+//    Очистить стили
     public void clearStyle() {
         main_sotrudniki.setStyle("");
         podmain_sotrudniki_spisok.setStyle("");
@@ -236,6 +226,9 @@ public class HelloController implements Initializable {
 
         work_pers_addSotr.setStyle("");
         work_pers_addOtdel.setStyle("");
+
+        main_report.setStyle("");
+        podmain_report_formirovanie.setStyle("");
     }
 
     public void defaultPosition() {
@@ -243,6 +236,7 @@ public class HelloController implements Initializable {
     }
 
     public void styleOnClk(Label label) {
+        
         label.setStyle("-fx-background-color: #2e2e2e; -fx-text-fill: #fff; -fx-background-radius: 3;");
     }
 
@@ -257,10 +251,11 @@ public class HelloController implements Initializable {
         podmain_tasks_spisok.setVisible(false);
         work_pers_addOtdel.setVisible(false);
         work_pers_addSotr.setVisible(false);
+        podmain_report_formirovanie.setVisible(false);
     }
 
     public void paneVisFalse() {
-
+        pane_reports.setVisible(false);
         pane_sotr.setVisible(false);
         work_pers.setVisible(false);
         pane_sotr_table_otdel.setVisible(false);
@@ -288,6 +283,16 @@ public class HelloController implements Initializable {
         podmain_tasks_new.setVisible(true);
         podmain_tasks_spisok.setVisible(true);
     }
+    public void newTaskClk(){
+        paneVisFalse();
+        pane_tasks.setVisible(true);
+        pane_new_task.setVisible(true);
+        getData.getDataStaff();
+        listStaff= getData.listStaff;
+        for(int i=0; i<=listStaff.size();i++){
+            combo_new_task.getItems().addAll(listStaff.get(i).fio);
+        }
+    }
 
     @FXML
     protected void spisokSotr() {
@@ -312,6 +317,7 @@ public class HelloController implements Initializable {
         defaultStyle(podmain_sotrudniki_spisok);
         defaultStyle(work_pers_add);
         work_pers.setVisible(true);
+        work_left_pane.setVisible(true);
     }
 
     @FXML
@@ -328,11 +334,13 @@ public class HelloController implements Initializable {
         add_otdel.setVisible(false);
         add_sotr.setVisible(true);
     }
+
     @FXML
-    protected void spispokOtdel(){
+    protected void spispokOtdel() {
         styleOnClk(pane_sotr_spisok_otdel);
+        defaultStyle(pane_sotr_spisok_sotr);
         pane_sotr_table_otdel.getItems().clear();
-        listOtdel= getData.listOtdel;
+        listOtdel = getData.listOtdel;
         pane_sotr_table_otdel.setVisible(true);
         getData.getDataOtdel();
         try {
@@ -346,17 +354,50 @@ public class HelloController implements Initializable {
     }
 
     @FXML
-    protected void addOtdel(){
+    protected void addOtdel() {
         styleOnClk(work_pers_addOtdel);
         defaultStyle(work_pers_addSotr);
         add_otdel.setVisible(true);
         add_sotr.setVisible(false);
 
     }
+
+    @FXML
+    protected void sotrudnikiSpisok() {
+        pane_sotr_table_otdel.setVisible(false);
+        defaultStyle(pane_sotr_spisok_otdel);
+        styleOnClk(pane_sotr_spisok_sotr);
+        fillSpisokSotr();
+    }
+
+    public void fillSpisokSotr() {
+        getData.getDataStaff();
+        listStaff = getData.listStaff;
+        System.out.println(listStaff.size());
+
+        GridPane gridpane = new GridPane();
+        gridpane.setPrefSize(770, 438);
+        Label pw = new Label("Password:");
+        gridpane.add(pw, 0, 2);
+    }
+    public void reports(){
+        defaultPosition();
+        clearStyle();
+        labelVisFalse();
+        styleOnClk(main_report);
+        defaultStyle(main_tasks);
+        defaultStyle(main_sotrudniki);
+        podmain_report_formirovanie.setVisible(true);
+    }
+    public void formirovanie_reports(){
+        paneVisFalse();
+        pane_reports.setVisible(true);
+        styleOnClk(podmain_report_formirovanie);
+    }
 }
 
 
 
-//Сделать проверку на пустые поля отдел и сотрудники, сделать изменение и удаление (Можно поиск).
+//сделать изменение и удаление (Можно поиск).
 // Сделать лейбл на который будет выводиться информация о выполнении работы Пример: Запись выполнена успешно.
 // Посмотреть как делается статистика и загрузка изображений на сервер. Также узнать у "Михаила" как он сделал красивый список.
