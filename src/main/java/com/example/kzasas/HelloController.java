@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
     ObservableList<BdOtdel> listOtdel;
     ObservableList<BDStaff> listStaff;
+    ObservableList<BDTasks> listTasks;
 
     ConBd cb = new ConBd();
     GetData getData = new GetData();
@@ -34,12 +35,34 @@ public class HelloController implements Initializable {
     private TableView<BdOtdel> pane_sotr_table_otdel;
     @FXML
     private TableColumn<BdOtdel, Integer> table_otdel_id;
-
     @FXML
     private TableColumn<BdOtdel, String> table_otdel_location;
-
     @FXML
     private TableColumn<BdOtdel, String> table_otdel_name;
+
+
+    @FXML
+    private TableView<BDStaff> pane_sotr_table_staff;
+    @FXML
+    private TableColumn<BDStaff, String> table_staff_fio;
+    @FXML
+    private TableColumn<BDStaff, Integer> table_staff_id;
+    @FXML
+    private TableColumn<BDStaff, String> table_staff_mail;
+    @FXML
+    private TableColumn<BDStaff, String> table_staff_otdel;
+
+    @FXML
+    private TableView<BDTasks> table_zadachi;
+    @FXML
+    private TableColumn<BDTasks, String > table_zadachi_description;
+    @FXML
+    private TableColumn<BDTasks, Integer> table_zadachi_id;
+    @FXML
+    private TableColumn<BDTasks, String> table_zadachi_staff;
+
+    @FXML
+    private TableColumn<BDTasks, String> table_zadachi_task;
 
     @FXML
     private Pane add_otdel, pane_new_task,pane_sotr, pane_tasks;
@@ -261,6 +284,7 @@ public class HelloController implements Initializable {
         pane_sotr.setVisible(false);
         work_pers.setVisible(false);
         pane_sotr_table_otdel.setVisible(false);
+        pane_sotr_table_staff.setVisible(false);
         add_otdel.setVisible(false);
         add_sotr.setVisible(false);
         pane_new_task.setVisible(false);
@@ -377,6 +401,7 @@ public class HelloController implements Initializable {
         defaultStyle(pane_sotr_spisok_sotr);
         pane_sotr_table_otdel.getItems().clear();
         listOtdel = getData.listOtdel;
+        pane_sotr_table_staff.setVisible(false);
         pane_sotr_table_otdel.setVisible(true);
         getData.getDataOtdel();
         try {
@@ -401,20 +426,10 @@ public class HelloController implements Initializable {
     @FXML
     protected void sotrudnikiSpisok() {
         pane_sotr_table_otdel.setVisible(false);
+        pane_sotr_table_staff.setVisible(true);
         defaultStyle(pane_sotr_spisok_otdel);
         styleOnClk(pane_sotr_spisok_sotr);
-        fillSpisokSotr();
-    }
-
-    public void fillSpisokSotr() {
-        getData.getDataStaff();
-        listStaff = getData.listStaff;
-        System.out.println(listStaff.size());
-
-        GridPane gridpane = new GridPane();
-        gridpane.setPrefSize(770, 438);
-        Label pw = new Label("Password:");
-        gridpane.add(pw, 0, 2);
+        fillStaffTable();
     }
     public void reports(){
         defaultPosition();
@@ -429,6 +444,32 @@ public class HelloController implements Initializable {
         paneVisFalse();
         pane_reports.setVisible(true);
         styleOnClk(podmain_report_formirovanie);
+    }
+    public void fillStaffTable(){
+        getData.getDataStaff();
+        listStaff = getData.listStaff;
+        try {
+            table_staff_id.setCellValueFactory(new PropertyValueFactory<BDStaff, Integer>("id"));
+            table_staff_fio.setCellValueFactory(new PropertyValueFactory<BDStaff, String>("fio"));
+            table_staff_otdel.setCellValueFactory(new PropertyValueFactory<BDStaff, String>("otdel"));
+            table_staff_mail.setCellValueFactory(new PropertyValueFactory<BDStaff, String>("mail"));
+            pane_sotr_table_staff.setItems(listStaff);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void spisokZadach (){
+        getData.getDatatasks();
+        listTasks = getData.listTasks;
+        try {
+            table_zadachi_id.setCellValueFactory(new PropertyValueFactory<BDTasks, Integer>("id"));
+            table_zadachi_staff.setCellValueFactory(new PropertyValueFactory<BDTasks, String>("staff"));
+            table_zadachi_task.setCellValueFactory(new PropertyValueFactory<BDTasks, String>("task"));
+            table_zadachi_description.setCellValueFactory(new PropertyValueFactory<BDTasks, String>("description"));
+            pane_sotr_table_staff.setItems(listStaff);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

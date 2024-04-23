@@ -3,10 +3,10 @@ package com.example.kzasas;
 public class BDStaff {
     int id;
     String fio;
+    String otdel;
+    String mail;
     String loginl;
     String password;
-    String mail;
-    String otdel;
 
     public int getId() {
         return id;
@@ -24,6 +24,21 @@ public class BDStaff {
         this.fio = fio;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getOtdel() {
+        return otdel;
+    }
+
+    public void setOtdel(String otdel) {
+        this.otdel = otdel;
+    }
     public String getLoginl() {
         return loginl;
     }
@@ -40,28 +55,13 @@ public class BDStaff {
         this.password = password;
     }
 
-    public String getMail() {
-        return mail;
-    }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getOtdel() {
-        return otdel;
-    }
-
-    public void setOtdel(String otdel) {
-        this.otdel = otdel;
-    }
-
-    public BDStaff(int id, String fio, String loginl, String password, String mail, String otdel) {
+    public BDStaff(int id, String fio, String otdel, String mail, String loginl, String password) {
         this.id = id;
         this.fio = fio;
-        this.loginl = loginl;
-        this.password = password;
         this.mail = mail;
         this.otdel = otdel;
+        this.loginl = loginl;
+        this.password = password;
     }
 }
