@@ -46,9 +46,11 @@ public class HelloController implements Initializable {
     @FXML
     private ComboBox combo_new_task;
     @FXML
-    private DatePicker new_task_startdate,new_task_finishdate;
+    private DatePicker new_task_finishdate;
     @FXML
     private AnchorPane work_left_pane;
+    @FXML
+    private TextArea new_task_description;
 
 
 
@@ -261,6 +263,8 @@ public class HelloController implements Initializable {
         pane_sotr_table_otdel.setVisible(false);
         add_otdel.setVisible(false);
         add_sotr.setVisible(false);
+        pane_new_task.setVisible(false);
+        pane_tasks.setVisible(false);
     }
 
     @FXML
@@ -284,16 +288,48 @@ public class HelloController implements Initializable {
         podmain_tasks_spisok.setVisible(true);
     }
     public void newTaskClk(){
+        styleOnClk(podmain_tasks_new);
         paneVisFalse();
         pane_tasks.setVisible(true);
         pane_new_task.setVisible(true);
         getData.getDataStaff();
         listStaff= getData.listStaff;
+        combo_new_task.getItems().clear();
+//        combo_new_task.setValue(null);
         for(int i=0; i<=listStaff.size();i++){
             combo_new_task.getItems().addAll(listStaff.get(i).fio);
         }
     }
 
+    public void newTaskBtn(){
+    String staff = combo_new_task.getValue().toString();
+    String task = new_task_task.getText();
+    String comit = new_task_comit.getText();
+    String description = new_task_description.getText();
+    String query = "INSERT INTO `kzss`.`tasks` (`staff`, `task`, `comit`, `description`) VALUES ('"+staff+"', '"+task+"', '"+comit+"', '"+description+"');";
+//    String date = new_task_finishdate
+        if (new_task_task.getText().equals(null)||new_task_comit.getText().equals(null)||new_task_description.getText().equals(null)) {
+            alert.setTitle("Ошибка");
+            alert.setHeaderText(null);
+            alert.setContentText("Заполните пустые поля!");
+            alert.showAndWait();
+        } else {
+        try {
+            Statement statement = cb.connection.createStatement();
+            statement.executeUpdate(query);
+            alert.setTitle("Запись");
+            alert.setHeaderText(null);
+            alert.setContentText("Запись выполнена успешно");
+            alert.showAndWait();
+        } catch (Exception e) {
+            alert.setTitle("Запись");
+            alert.setHeaderText(null);
+            alert.setContentText("Запись не выполнена");
+            alert.showAndWait();
+            throw new RuntimeException(e);
+        }
+        }
+    }
     @FXML
     protected void spisokSotr() {
         styleOnClk(podmain_sotrudniki_spisok);

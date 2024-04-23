@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,7 +19,7 @@
 
 <AnchorPane fx:id="back_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kzasas.HelloController">
    <children>
-      <AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" visible="false">
+      <AnchorPane fx:id="login_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;">
          <children>
             <AnchorPane fx:id="login_centre" layoutX="349.0" layoutY="29.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #fff;" AnchorPane.topAnchor="29.0">
                <children>
@@ -43,7 +44,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="main_page" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;">
+      <AnchorPane fx:id="main_page" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #1e1e1e;" visible="false">
          <children>
             <AnchorPane layoutX="-7.0" layoutY="-8.0" prefHeight="516.0" prefWidth="207.0" style="-fx-border-style: solid solid none none; -fx-border-width: 1; -fx-border-color: #2e2e2e;">
                <children>
@@ -117,11 +118,11 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-            <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="771.0" style="-fx-background-color: #1e1e1e;" visible="false">
+            <AnchorPane fx:id="main_sotrudniki_pane" layoutX="200.0" prefHeight="512.0" prefWidth="771.0" style="-fx-background-color: #1e1e1e;">
                <children>
                   <AnchorPane fx:id="work_pers" layoutY="-7.0" prefHeight="512.0" prefWidth="801.0">
                      <children>
-                        <AnchorPane fx:id="work_left_pane" layoutX="1.0" layoutY="-8.0" prefHeight="520.0" prefWidth="129.0" style="-fx-border-color: #2e2e2e; -fx-border-width: 1; -fx-border-style: solid solid none none;">
+                        <AnchorPane fx:id="work_left_pane" layoutX="1.0" layoutY="-8.0" prefHeight="520.0" prefWidth="129.0" style="-fx-border-color: #2e2e2e; -fx-border-width: 1; -fx-border-style: solid solid none none;" visible="false">
                            <children>
                               <Label fx:id="work_pers_add" alignment="CENTER" layoutX="5.0" layoutY="132.0" onMouseClicked="#workPersAddSotr" prefHeight="31.0" prefWidth="116.0" styleClass="labelcolorNoPad" stylesheets="@Style_Login.css" text="Добавить" textFill="WHITE">
                                  <font>
@@ -227,25 +228,25 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="pane_tasks" layoutX="211.0" layoutY="8.0" prefHeight="491.0" prefWidth="780.0">
+            <AnchorPane fx:id="pane_tasks" layoutX="211.0" layoutY="8.0" prefHeight="491.0" prefWidth="780.0" visible="false">
                <children>
-                  <Pane fx:id="pane_new_task" layoutX="7.0" layoutY="25.0" prefHeight="441.0" prefWidth="760.0">
+                  <Pane fx:id="pane_new_task" layoutX="7.0" layoutY="25.0" prefHeight="441.0" prefWidth="760.0" visible="false">
                      <children>
                         <ComboBox fx:id="combo_new_task" layoutX="140.0" layoutY="111.0" prefHeight="34.0" prefWidth="227.0" promptText="Сотрудник/группа" />
-                        <DatePicker fx:id="new_task_startdate" layoutX="140.0" layoutY="225.0" prefHeight="26.0" prefWidth="184.0" promptText="Начало " />
-                        <Button fx:id="new_task_btn" layoutX="141.0" layoutY="396.0" mnemonicParsing="false" onAction="#addsotrserver" prefHeight="31.0" prefWidth="129.0" style="-fx-font-size: 18;" styleClass="btn" stylesheets="@Style_Login.css" text="Записать" textFill="WHITE">
+                        <Button fx:id="new_task_btn" layoutX="141.0" layoutY="396.0" mnemonicParsing="false" onAction="#newTaskBtn" prefHeight="31.0" prefWidth="129.0" style="-fx-font-size: 18;" styleClass="btn" stylesheets="@Style_Login.css" text="Записать" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="1.0" />
                            </font>
                         </Button>
-                        <DatePicker fx:id="new_task_finishdate" layoutX="141.0" layoutY="259.0" prefHeight="26.0" prefWidth="183.0" promptText="Конец" />
-                        <TextField fx:id="new_task_task" layoutX="140.0" layoutY="151.0" prefHeight="68.0" prefWidth="226.0" promptText="Задача" />
-                        <TextField fx:id="new_task_comit" layoutX="141.0" layoutY="295.0" prefHeight="93.0" prefWidth="226.0" promptText="Коментарий" />
+                        <DatePicker fx:id="new_task_finishdate" layoutX="140.0" layoutY="221.0" prefHeight="26.0" prefWidth="183.0" promptText="Конец" />
+                        <TextField fx:id="new_task_task" alignment="TOP_LEFT" cache="true" layoutX="140.0" layoutY="151.0" prefHeight="68.0" prefWidth="226.0" promptText="Задача" />
+                        <TextField fx:id="new_task_comit" alignment="TOP_LEFT" layoutX="141.0" layoutY="358.0" prefHeight="30.0" prefWidth="226.0" promptText="Коментарий" />
                         <Label fx:id="pane_sotr_spisok_sotr12" alignment="CENTER" layoutX="116.0" layoutY="69.0" prefHeight="31.0" prefWidth="272.0" styleClass="labelcolorNoPad" stylesheets="@Style_Login.css" text="Новая задача" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="28.0" />
                            </font>
                         </Label>
+                        <TextArea fx:id="new_task_description" layoutX="141.0" layoutY="258.0" prefHeight="93.0" prefWidth="229.0" promptText="Описание" style="-fx-wrap-text: true;" />
                      </children></Pane>
                </children>
             </AnchorPane>
